@@ -34,9 +34,9 @@ static bool handleKeyswitchEventDefault(Key mappedKey, byte row, byte col, uint8
   if (mappedKey.flags & SYNTHETIC) {
     handleSyntheticKeyswitchEvent(mappedKey, keyState);
   } else if (keyToggledOn(keyState)) {
-    kaleidoscope::hid::pressToggledOnKey(mappedKey);
-  } else if (keyIsPressed(keyState)) {
     kaleidoscope::hid::pressKey(mappedKey);
+  } else if (keyIsPressed(keyState)) {
+    kaleidoscope::hid::pressKey(mappedKey, false);
   } else if (keyToggledOff(keyState) && (keyState & INJECTED)) {
     kaleidoscope::hid::releaseKey(mappedKey);
   }
